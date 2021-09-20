@@ -1,6 +1,7 @@
 import '../styles/App.scss';
 import ahorcado from '../images/favicon-ahorcado.jpg';
 
+
 function App() {
   return (
     <div classNameName="page">
