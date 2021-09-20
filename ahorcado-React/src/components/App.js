@@ -4,7 +4,7 @@ import ahorcado from '../images/favicon-ahorcado.jpg';
 
 function App() {
   return (
-    <div classNameName="page">
+    <div className="page">
       <header>
         <h1 className="header__title">Juego del ahorcado</h1>
       </header>
