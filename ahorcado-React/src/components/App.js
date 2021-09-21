@@ -13,7 +13,14 @@ function App() {
     setNumberOfErrors(numberOfErrors);
   };
   const handleIntroducedLetter = (ev) => {
-    setintroducedLetter(ev.current.target.value);
+    // if (){
+    //   // Validar --> expresiones regulares --> test() Modulo1
+    //   setintroducedLetter(ev.currentTarget.value);
+    // }
+    // else{
+    //   const text = 'escribe una letra';
+    // }
+    setintroducedLetter(ev.currentTarget.value); //eliminar cuando if funcione
   };
 
   //return
@@ -61,6 +68,7 @@ function App() {
               type="text"
               name="last-letter"
               id="last-letter"
+              value={introducedLetter}
             />
             <br />
             <button
@@ -72,8 +80,8 @@ function App() {
             </button>
           </form>
         </section>
-        <section className="dummy error-5">
-          {/* <span className="error-13 eye"></span>
+        <section className={`dummy error-${numberOfErrors}`}>
+          <span className="error-13 eye"></span>
           <span className="error-12 eye"></span>
           <span className="error-11 line"></span>
           <span className="error-10 line"></span>
@@ -83,9 +91,10 @@ function App() {
           <span className="error-6 head"></span>
           <span className="error-5 line"></span>
           <span className="error-4 line"></span>
-          <span className="error-3 line"></span> */}
-          <span className="error-{numberOfErrors} line"></span> {/* error */}
-          <span className="error-1 line"></span> {/* debe empezar en 0 */}
+          <span className="error-3 line"></span>
+          <span className="error-2 line"></span>
+          <span className="error-1 line"></span>
+          <span className="error-0 line"></span>
         </section>
       </main>
     </div>
