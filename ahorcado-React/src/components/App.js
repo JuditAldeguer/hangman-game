@@ -4,14 +4,13 @@ import { useState } from 'react';
 
 function App() {
   //estados
-  const [numberOfErrors, setNumberOfErrors] = useState(0);
+  let [numberOfErrors, setNumberOfErrors] = useState(0);
   const [introducedLetter, setintroducedLetter] = useState('');
 
   //funciones
   const handleErrors = (ev) => {
-    console.log(ev.current.target);
     numberOfErrors++;
-    setNumberOfErrors();
+    setNumberOfErrors(numberOfErrors);
   };
   const handleIntroducedLetter = (ev) => {
     setintroducedLetter(ev.current.target.value);
@@ -51,14 +50,14 @@ function App() {
             </ul>
           </div>
           <form className="form">
-            <label className="title" for="last-letter">
+            <label className="title" htmlFor="last-letter">
               Escribe una letra:
             </label>
             <input
               onChange={handleIntroducedLetter}
-              autocomplete="off"
+              autoComplete="off"
               className="form__input"
-              maxlength="1"
+              maxLength="1"
               type="text"
               name="last-letter"
               id="last-letter"
@@ -67,14 +66,14 @@ function App() {
             <button
               className="button_increment"
               type="button"
-              onChange={handleErrors}
+              onClick={handleErrors}
             >
               Incrementar
             </button>
           </form>
         </section>
         <section className="dummy error-5">
-          <span className="error-13 eye"></span>
+          {/* <span className="error-13 eye"></span>
           <span className="error-12 eye"></span>
           <span className="error-11 line"></span>
           <span className="error-10 line"></span>
@@ -84,9 +83,9 @@ function App() {
           <span className="error-6 head"></span>
           <span className="error-5 line"></span>
           <span className="error-4 line"></span>
-          <span className="error-3 line"></span>
+          <span className="error-3 line"></span> */}
           <span className="error-{numberOfErrors} line"></span> {/* error */}
-          <span className="error-1 line"></span>
+          <span className="error-1 line"></span> {/* debe empezar en 0 */}
         </section>
       </main>
     </div>
