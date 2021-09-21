@@ -13,14 +13,16 @@ function App() {
     setNumberOfErrors(numberOfErrors);
   };
   const handleIntroducedLetter = (ev) => {
-    // if (){
-    //   // Validar --> expresiones regulares --> test() Modulo1
-    //   setintroducedLetter(ev.currentTarget.value);
-    // }
-    // else{
+    const leter = ev.currentTarget.value;
+    //  const patt = /^[a-zA-Z]{1}$;
+    //  //  da error patt ------------
+    // if (patt.test(leter)) {
+    //   // Validar --> expresiones regulares --> test() Modulo1 --> ^[a-zA-Z]{1}$
+    //   setintroducedLetter(leter);
+    // } else {
     //   const text = 'escribe una letra';
     // }
-    setintroducedLetter(ev.currentTarget.value); //eliminar cuando if funcione
+    setintroducedLetter(leter); //eliminar cuando if funcione
   };
 
   //return
