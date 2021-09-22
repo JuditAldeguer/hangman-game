@@ -6,6 +6,9 @@ function App() {
   //estados
   let [numberOfErrors, setNumberOfErrors] = useState(0);
   const [introducedLetter, setintroducedLetter] = useState('');
+  const [word, setWord] = useState('katacroker');
+  const [feedback, setFeedback] = useState('');
+  const [userLetters, setUserLetters] = useState([]);
 
   //funciones
   const handleErrors = (ev) => {
@@ -13,17 +16,29 @@ function App() {
     setNumberOfErrors(numberOfErrors);
   };
   const handleIntroducedLetter = (ev) => {
-    const leter = ev.currentTarget.value;
-    //  const patt = /^[a-zA-Z]{1}$;
-    //  //  da error patt ------------
-    // if (patt.test(leter)) {
-    //   // Validar --> expresiones regulares --> test() Modulo1 --> ^[a-zA-Z]{1}$
-    //   setintroducedLetter(leter);
-    // } else {
-    //   const text = 'escribe una letra';
-    // }
-    setintroducedLetter(leter); //eliminar cuando if funcione
+    const letter = ev.currentTarget.value;
+    const patt = /^[a-zA-Záéíóúñü]{1}$/;
+    if  (patt.test(letter)) {
+      setintroducedLetter(letter);
+      setFeedback('');
+      if (letter !== "" && letter !== " ") {
+        if (!userLetters.includes(letter)) {
+          userLetters.push(letter);
+          setUserLetters(userLetters);
+        }
+      }
+    } else {
+      setFeedback('ERROR: debes escribir una letra del abecedario castellano');
+      setintroducedLetter(letter);
+    }
   };
+
+  const renderSolutionLetters = () => {
+    const wordLetters = word.split('');
+    return wordLetters.map((x) => 
+      <li class="letter"></li>
+    );
+  }
 
   //return
   return (
@@ -36,7 +51,8 @@ function App() {
           <div className="solution">
             <h2 className="title">Solución:</h2>
             <ul className="letters">
-              <li className="letter">k</li>
+             {renderSolutionLetters()}
+              {/* <li className="letter">k</li>
               <li className="letter">a</li>
               <li className="letter"></li>
               <li className="letter">a</li>
@@ -45,7 +61,7 @@ function App() {
               <li className="letter"></li>
               <li className="letter">k</li>
               <li className="letter">e</li>
-              <li className="letter">r</li>
+              <li className="letter">r</li> */}
             </ul>
           </div>
           <div className="feedback">
@@ -73,6 +89,7 @@ function App() {
               value={introducedLetter}
             />
             <br />
+            <p>{feedback}</p>
             <button
               className="button_increment"
               type="button"
