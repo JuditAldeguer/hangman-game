@@ -39,12 +39,6 @@ function App() {
   //   }
   // };
 
-  const renderErrorLetters = () => {
-    const found = userLetters.filter((l) => !word.includes(l));
-    console.log(found);
-    return found.map((l) => <li className="letter">{l}</li>);
-  };
-
   const handleErrors = (ev) => {
     numberOfErrors++;
     setNumberOfErrors(numberOfErrors);
@@ -65,10 +59,10 @@ function App() {
       setFeedback('ERROR: debes escribir una letra del abecedario castellano');
       setintroducedLetter(letter);
     }
-    // answerSolution();
   };
 
   const getSolution = () => {
+    //------------Array ex 5 -----------------------------------------------------------
     // const found = userLetters.findIndex((l) => word.includes(l));
     // const letter = found.split('');
     // return letter;
@@ -77,6 +71,12 @@ function App() {
     getSolution();
     const wordLetters = word.split('');
     return wordLetters.map((x) => <li class="letter">{letter}</li>);
+  };
+
+  const renderErrorLetters = () => {
+    const found = userLetters.filter((l) => !word.includes(l));
+    console.log(found);
+    return found.map((l) => <li className="letter">{l}</li>);
   };
 
   //return
