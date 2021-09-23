@@ -70,7 +70,7 @@ function App() {
   const renderSolutionLetters = () => {
     getSolution();
     const wordLetters = word.split('');
-    return wordLetters.map((x) => <li class="letter">{letter}</li>);
+    return wordLetters.map((x) => <li class="letter">{}</li>); //pendiente añadir letra
   };
 
   const renderErrorLetters = () => {
