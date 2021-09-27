@@ -9,35 +9,33 @@ function App() {
   const [word, setWord] = useState('katakroker');
   const [feedback, setFeedback] = useState('');
   const [userLetters, setUserLetters] = useState([]);
-  //const [error, setError] = useState([]);
-  //const [solution, setSolution] = useState([]);
+  const [errors, setErrors] = useState([]);
+  const [solution, setSolution] = useState([]);
 
   //funciones
-  // const answerSolution = () => {
-  //   if (word.includes(introducedLetter)) {
-  //     if (!solution.includes(introducedLetter)) {
-  //       setSolution(introducedLetter);
-  //       setFeedback('Has acertado!');
-  //       //fallo
-  //       //<li className="letter">f</li>
-  //     } else {
-  //       setFeedback(
-  //         'ERROR: ya has escrito esta letra antes y si es parte de la palabra.'
-  //       );
-  //     }
-  //   } else {
-  //     if (!error.includes(introducedLetter)) {
-  //       setError(introducedLetter);
-  //       //fallo
-  //       //<li className="letter">f</li>
-  //       setFeedback('Has fallado... Prueba otra vez!');
-  //     } else {
-  //       setFeedback(
-  //         'ERROR: ya has escrito esta letra antes y no es parte de la palabra.'
-  //       );
-  //     }
-  //   }
-  // };
+  useEffect(() => {
+    functionGiveFeedback();
+  }, [introducedLetter]);
+
+  const functionGiveFeedback = () => {
+    if (word.includes(introducedLetter)) {
+      if (!solution.includes(introducedLetter)) {
+        setFeedback('Has acertado!');
+      } else {
+        setFeedback(
+          'ERROR: ya has escrito esta letra antes y si es parte de la palabra.'
+        );
+      }
+    } else {
+      if (!errors.includes(introducedLetter)) {
+        setFeedback('Has fallado... Prueba otra vez!');
+      } else {
+        setFeedback(
+          'ERROR: ya has escrito esta letra antes y no es parte de la palabra.'
+        );
+      }
+    }
+  };
 
   const handleErrors = (ev) => {
     numberOfErrors++;
@@ -67,17 +65,33 @@ function App() {
 
   const getSolution = () => {
     //fetch -----------------------------------------------------------
-    setWord();
+    //setWord();
   };
 
   const renderSolutionLetters = () => {
     const wordLetters = word.split('');
-    return wordLetters.map((letraSoluc) => {
+    return wordLetters.map((letraSoluc, i) => {
       const found = userLetters.findIndex((l) => l === letraSoluc);
       if (found >= 0) {
-        return <li class="letter">{letraSoluc}</li>;
+        if (!solution.includes(letraSoluc)) {
+          solution.push(letraSoluc);
+          setSolution(...solution);
+        }
+        return (
+          <li key={i} className="letter">
+            {letraSoluc}
+          </li>
+        );
       } else {
-        return <li class="letter"> </li>;
+        if (!word.includes(letraSoluc) && !errors.includes(letraSoluc)) {
+          errors.push(letraSoluc);
+          setErrors(...errors);
+        }
+        return (
+          <li key={i} className="letter">
+            {' '}
+          </li>
+        );
       }
     });
   };
