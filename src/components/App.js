@@ -1,6 +1,6 @@
 import '../styles/App.scss';
 import ahorcado from '../images/favicon-ahorcado.jpg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   //estados
@@ -11,7 +11,6 @@ function App() {
   const [userLetters, setUserLetters] = useState([]);
   //const [error, setError] = useState([]);
   //const [solution, setSolution] = useState([]);
-  const [letter, setLetter] = useState('');
 
   //funciones
   // const answerSolution = () => {
@@ -62,8 +61,13 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    getSolution();
+  }, []);
+
   const getSolution = () => {
     //fetch -----------------------------------------------------------
+    setWord();
   };
 
   const renderSolutionLetters = () => {
