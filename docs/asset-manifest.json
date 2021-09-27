@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.38d557db.chunk.css",
+    "main.js": "/static/js/main.ffa4dbf7.chunk.js",
+    "main.js.map": "/static/js/main.ffa4dbf7.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.bb1a16ed.js",
+    "runtime-main.js.map": "/static/js/runtime-main.bb1a16ed.js.map",
+    "static/js/2.c980743c.chunk.js": "/static/js/2.c980743c.chunk.js",
+    "static/js/2.c980743c.chunk.js.map": "/static/js/2.c980743c.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.38d557db.chunk.css.map": "/static/css/main.38d557db.chunk.css.map",
+    "static/js/2.c980743c.chunk.js.LICENSE.txt": "/static/js/2.c980743c.chunk.js.LICENSE.txt",
+    "static/media/App.scss": "/static/media/blackboard.7288f09f.jpg",
+    "static/media/favicon-ahorcado.01a205ca.jpg": "/static/media/favicon-ahorcado.01a205ca.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bb1a16ed.js",
+    "static/js/2.c980743c.chunk.js",
+    "static/css/main.38d557db.chunk.css",
+    "static/js/main.ffa4dbf7.chunk.js"
+  ]
+}
