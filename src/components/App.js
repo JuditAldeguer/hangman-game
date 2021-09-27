@@ -11,6 +11,7 @@ function App() {
   const [userLetters, setUserLetters] = useState([]);
   //const [error, setError] = useState([]);
   //const [solution, setSolution] = useState([]);
+  const [letter, setLetter] = useState('');
 
   //funciones
   // const answerSolution = () => {
@@ -62,15 +63,19 @@ function App() {
   };
 
   const getSolution = () => {
-    //------------Array ex 5 -----------------------------------------------------------
-    // const found = userLetters.findIndex((l) => word.includes(l));
-    // const letter = found.split('');
-    // return letter;
+    //fetch -----------------------------------------------------------
   };
+
   const renderSolutionLetters = () => {
-    getSolution();
     const wordLetters = word.split('');
-    return wordLetters.map((x) => <li class="letter">{}</li>); //pendiente añadir letra
+    return wordLetters.map((letraSoluc) => {
+      const found = userLetters.findIndex((l) => l === letraSoluc);
+      if (found >= 0) {
+        return <li class="letter">{letraSoluc}</li>;
+      } else {
+        return <li class="letter"> </li>;
+      }
+    });
   };
 
   const renderErrorLetters = () => {
@@ -89,9 +94,7 @@ function App() {
         <section>
           <div className="solution">
             <h2 className="title">Solución:</h2>
-            <ul className="letters">
-              {renderSolutionLetters()} {/* //pendiente--------------- */}
-            </ul>
+            <ul className="letters">{renderSolutionLetters()}</ul>
           </div>
           <div className="feedback">
             <h2 className="title">Letras falladas:</h2>
@@ -146,8 +149,10 @@ function App() {
 export default App;
 
 //PENDIENTE---------------------
-//escuchar: solución, letra introducida por usuaria-OK
+//fetch: solucion aleatoria
 
-//useState: array( letras correctas de la solución), array (letras falladas = introducida - correctas), array (letra introducida),array (número de errores)
+//useState: array( letras correctas de la solución), array (número de errores)
 
 //Acción tras solución correcta
+
+//convertir en conponentes
