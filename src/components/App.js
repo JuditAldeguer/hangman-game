@@ -18,21 +18,23 @@ function App() {
   }, [introducedLetter]);
 
   const functionGiveFeedback = () => {
-    if (word.includes(introducedLetter)) {
-      if (!solution.includes(introducedLetter)) {
-        setFeedback('Has acertado!');
+    if ((!introducedLetter === '') | ' ') {
+      if (word.includes(introducedLetter)) {
+        if (!solution.includes(introducedLetter)) {
+          setFeedback('Has acertado!');
+        } else {
+          setFeedback(
+            'ERROR: ya has escrito esta letra antes y si es parte de la palabra.'
+          );
+        }
       } else {
-        setFeedback(
-          'ERROR: ya has escrito esta letra antes y si es parte de la palabra.'
-        );
-      }
-    } else {
-      if (!errors.includes(introducedLetter)) {
-        setFeedback('Has fallado... Prueba otra vez!');
-      } else {
-        setFeedback(
-          'ERROR: ya has escrito esta letra antes y no es parte de la palabra.'
-        );
+        if (!errors.includes(introducedLetter)) {
+          setFeedback('Has fallado... Prueba otra vez!');
+        } else {
+          setFeedback(
+            'ERROR: ya has escrito esta letra antes y no es parte de la palabra.'
+          );
+        }
       }
     }
   };
