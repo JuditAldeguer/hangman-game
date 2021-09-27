@@ -18,7 +18,7 @@ function App() {
   }, [introducedLetter]);
 
   const functionGiveFeedback = () => {
-    if ((!introducedLetter === '') | ' ') {
+    if ((!introducedLetter === '') | (!introducedLetter === ' ')) {
       if (word.includes(introducedLetter)) {
         if (!solution.includes(introducedLetter)) {
           setFeedback('Has acertado!');
