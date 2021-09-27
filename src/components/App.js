@@ -87,11 +87,7 @@ function App() {
           errors.push(letraSoluc);
           setErrors(...errors);
         }
-        return (
-          <li key={i} className="letter">
-            {' '}
-          </li>
-        );
+        return <li key={i} className="letter"></li>;
       }
     });
   };
