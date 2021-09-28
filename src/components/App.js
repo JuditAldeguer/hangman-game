@@ -1,39 +1,40 @@
 import '../styles/App.scss';
 import ahorcado from '../images/favicon-ahorcado.jpg';
 import { useEffect, useState } from 'react';
+import callToApi from '../services/api';
 
 function App() {
   //estados
   let [numberOfErrors, setNumberOfErrors] = useState(0);
   const [introducedLetter, setintroducedLetter] = useState('');
-  const [word, setWord] = useState('katakroker');
-  const [feedback, setFeedback] = useState('');
+  const [word, setWord] = useState('');
   const [userLetters, setUserLetters] = useState([]);
   const [errors, setErrors] = useState([]);
   const [solution, setSolution] = useState([]);
 
   //funciones
-  useEffect(() => {
-    functionGiveFeedback();
-  }, [introducedLetter]);
-
   const functionGiveFeedback = () => {
-    if ((!introducedLetter === '') | (!introducedLetter === ' ')) {
-      if (word.includes(introducedLetter)) {
-        if (!solution.includes(introducedLetter)) {
-          setFeedback('Has acertado!');
+    const patt = /^[a-zA-Záéíóúñü]{1}$/;
+    if (!patt.test(introducedLetter)) {
+      return 'ERROR: debes escribir una letra del abecedario castellano';
+    } else {
+      if (introducedLetter !== '' && introducedLetter !== ' ') {
+        if (word.includes(introducedLetter)) {
+          if (!solution.includes(introducedLetter)) {
+            solution.push(introducedLetter);
+            setSolution(solution);
+            return 'Has acertado!';
+          } else {
+            return 'ERROR: ya has escrito esta letra antes y si es parte de la palabra.';
+          }
         } else {
-          setFeedback(
-            'ERROR: ya has escrito esta letra antes y si es parte de la palabra.'
-          );
-        }
-      } else {
-        if (!errors.includes(introducedLetter)) {
-          setFeedback('Has fallado... Prueba otra vez!');
-        } else {
-          setFeedback(
-            'ERROR: ya has escrito esta letra antes y no es parte de la palabra.'
-          );
+          if (!errors.includes(introducedLetter)) {
+            errors.push(introducedLetter);
+            setErrors(errors);
+            return 'Has fallado... Prueba otra vez!';
+          } else {
+            return 'ERROR: ya has escrito esta letra antes y no es parte de la palabra.';
+          }
         }
       }
     }
@@ -48,7 +49,6 @@ function App() {
     const patt = /^[a-zA-Záéíóúñü]{1}$/;
     if (patt.test(letter)) {
       setintroducedLetter(letter);
-      setFeedback('');
       if (letter !== '' && letter !== ' ') {
         if (!userLetters.includes(letter)) {
           userLetters.push(letter);
@@ -56,39 +56,35 @@ function App() {
         }
       }
     } else {
-      setFeedback('ERROR: debes escribir una letra del abecedario castellano');
       setintroducedLetter(letter);
     }
   };
 
   useEffect(() => {
-    getSolution();
+    callToApi().then((responsedata) => setWord(responsedata));
+    setErrors([]);
+    setSolution([]);
   }, []);
-
-  const getSolution = () => {
-    //fetch -----------------------------------------------------------
-    //setWord();
-  };
 
   const renderSolutionLetters = () => {
     const wordLetters = word.split('');
     return wordLetters.map((letraSoluc, i) => {
       const found = userLetters.findIndex((l) => l === letraSoluc);
       if (found >= 0) {
-        if (!solution.includes(letraSoluc)) {
-          solution.push(letraSoluc);
-          setSolution(...solution);
-        }
+        // if (!solution.includes(letraSoluc)) {
+        //   solution.push(letraSoluc); //dice que no es una funcion
+        //   setSolution(solution);
+        // }
         return (
-          <li key={i} className="letter">
+          <li key={`e_${i}`} className="letter">
             {letraSoluc}
           </li>
         );
       } else {
-        if (!word.includes(letraSoluc) && !errors.includes(letraSoluc)) {
-          errors.push(letraSoluc);
-          setErrors(...errors);
-        }
+        // if (!word.includes(letraSoluc) && !errors.includes(letraSoluc)) {
+        //   errors.push(letraSoluc);
+        //   setErrors(errors);
+        // }
         return <li key={i} className="letter"></li>;
       }
     });
@@ -96,7 +92,6 @@ function App() {
 
   const renderErrorLetters = () => {
     const found = userLetters.filter((l) => !word.includes(l));
-    console.log(found);
     return found.map((l) => <li className="letter">{l}</li>);
   };
 
@@ -131,7 +126,7 @@ function App() {
               value={introducedLetter}
             />
             <br />
-            <p>{feedback}</p>
+            <p>{functionGiveFeedback()}</p>
             <button
               className="button_increment"
               type="button"
