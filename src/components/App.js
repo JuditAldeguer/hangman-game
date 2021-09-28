@@ -38,6 +38,7 @@ function App() {
         }
       }
     }
+    //pendiente añadir un feedback al acertar la palabra entera
   };
 
   useEffect(() => {
