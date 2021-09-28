@@ -21,20 +21,40 @@ function App() {
       if (introducedLetter !== '' && introducedLetter !== ' ') {
         if (word.includes(introducedLetter)) {
           if (!solution.includes(introducedLetter)) {
-            solution.push(introducedLetter);
-            setSolution(solution);
+            // solution.push(introducedLetter);
+            // setSolution(solution);
             return 'Has acertado!';
           } else {
             return 'ERROR: ya has escrito esta letra antes y si es parte de la palabra.';
           }
         } else {
           if (!errors.includes(introducedLetter)) {
-            errors.push(introducedLetter);
-            setErrors(errors);
-            return 'Has fallado... Prueba otra vez!';
+            // errors.push(introducedLetter);
+            // setErrors(errors);
+            return 'Has fallado... Prueba otra vez!'; //pasa dos veces por aqui y, por ello, se pisa dando "Ya has pasado por aqui antes"
           } else {
             return 'ERROR: ya has escrito esta letra antes y no es parte de la palabra.';
           }
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    updateSolErr();
+  }, [introducedLetter]);
+
+  const updateSolErr = () => {
+    if (introducedLetter !== '' && introducedLetter !== ' ') {
+      if (word.includes(introducedLetter)) {
+        if (!solution.includes(introducedLetter)) {
+          solution.push(introducedLetter);
+          setSolution(solution);
+        }
+      } else {
+        if (!errors.includes(introducedLetter)) {
+          errors.push(introducedLetter);
+          setErrors(errors);
         }
       }
     }
@@ -71,20 +91,12 @@ function App() {
     return wordLetters.map((letraSoluc, i) => {
       const found = userLetters.findIndex((l) => l === letraSoluc);
       if (found >= 0) {
-        // if (!solution.includes(letraSoluc)) {
-        //   solution.push(letraSoluc); //dice que no es una funcion
-        //   setSolution(solution);
-        // }
         return (
           <li key={`e_${i}`} className="letter">
             {letraSoluc}
           </li>
         );
       } else {
-        // if (!word.includes(letraSoluc) && !errors.includes(letraSoluc)) {
-        //   errors.push(letraSoluc);
-        //   setErrors(errors);
-        // }
         return <li key={i} className="letter"></li>;
       }
     });
