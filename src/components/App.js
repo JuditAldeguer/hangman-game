@@ -1,11 +1,10 @@
 import '../styles/App.scss';
 import ahorcado from '../images/favicon-ahorcado.jpg';
 import { useEffect, useState } from 'react';
-import callToApi from '../services/api';
+import objectFunctions from '../services/api';
 
 function App() {
   //estados
-  let [numberOfErrors, setNumberOfErrors] = useState(0);
   const [introducedLetter, setintroducedLetter] = useState('');
   const [word, setWord] = useState('');
   const [userLetters, setUserLetters] = useState([]);
@@ -21,24 +20,19 @@ function App() {
       if (introducedLetter !== '' && introducedLetter !== ' ') {
         if (word.includes(introducedLetter)) {
           if (!solution.includes(introducedLetter)) {
-            // solution.push(introducedLetter);
-            // setSolution(solution);
             return 'Has acertado!';
           } else {
-            return 'ERROR: ya has escrito esta letra antes y si es parte de la palabra.';
+            return 'Ya has escrito esta letra antes y si es parte de la palabra.';
           }
         } else {
           if (!errors.includes(introducedLetter)) {
-            // errors.push(introducedLetter);
-            // setErrors(errors);
-            return 'Has fallado... Prueba otra vez!'; //pasa dos veces por aqui y, por ello, se pisa dando "Ya has pasado por aqui antes"
+            return 'Has fallado... Prueba otra vez!';
           } else {
-            return 'ERROR: ya has escrito esta letra antes y no es parte de la palabra.';
+            return 'Ya has escrito esta letra antes y no es parte de la palabra.';
           }
         }
       }
     }
-    //pendiente añadir un feedback al acertar la palabra entera
   };
 
   useEffect(() => {
@@ -46,35 +40,33 @@ function App() {
   }, [introducedLetter]);
 
   const updateSolErr = () => {
-    if (introducedLetter !== '' && introducedLetter !== ' ') {
-      if (word.includes(introducedLetter)) {
-        if (!solution.includes(introducedLetter)) {
-          solution.push(introducedLetter);
-          setSolution(solution);
-        }
-      } else {
-        if (!errors.includes(introducedLetter)) {
-          errors.push(introducedLetter);
-          setErrors(errors);
+    const patt = /^[a-zA-ZáéíóúñüÁÉÍÓÚÜ]{1}$/;
+    if (patt.test(introducedLetter)) {
+      if (introducedLetter !== '' && introducedLetter !== ' ') {
+        if (word.includes(introducedLetter)) {
+          if (!solution.includes(introducedLetter)) {
+            solution.push(introducedLetter);
+            setSolution([...solution]);
+          }
+        } else {
+          if (!errors.includes(introducedLetter)) {
+            errors.push(introducedLetter);
+            setErrors([...errors]);
+          }
         }
       }
     }
   };
 
-  const handleErrors = (ev) => {
-    numberOfErrors++;
-    setNumberOfErrors(numberOfErrors);
-  };
   const handleIntroducedLetter = (ev) => {
-    const letter = ev.currentTarget.value;
-    const patt = /^[a-zA-Záéíóúñü]{1}$/;
+    const initialLetter = ev.currentTarget.value;
+    const letter = initialLetter.toLowerCase();
+    const patt = /^[a-zA-ZáéíóúñüÁÉÍÓÚÜ]{1}$/;
     if (patt.test(letter)) {
       setintroducedLetter(letter);
-      if (letter !== '' && letter !== ' ') {
-        if (!userLetters.includes(letter)) {
-          userLetters.push(letter);
-          setUserLetters(userLetters);
-        }
+      if (!userLetters.includes(letter)) {
+        userLetters.push(letter);
+        setUserLetters(userLetters);
       }
     } else {
       setintroducedLetter(letter);
@@ -82,7 +74,7 @@ function App() {
   };
 
   useEffect(() => {
-    callToApi().then((responsedata) => setWord(responsedata));
+    objectFunctions.callToApi().then((responsedata) => setWord(responsedata));
     setErrors([]);
     setSolution([]);
   }, []);
@@ -140,16 +132,9 @@ function App() {
             />
             <br />
             <p>{functionGiveFeedback()}</p>
-            <button
-              className="button_increment"
-              type="button"
-              onClick={handleErrors}
-            >
-              Incrementar
-            </button>
           </form>
         </section>
-        <section className={`dummy error-${numberOfErrors}`}>
+        <section className={`dummy error-${errors.length}`}>
           <span className="error-13 eye"></span>
           <span className="error-12 eye"></span>
           <span className="error-11 line"></span>
@@ -173,10 +158,9 @@ function App() {
 export default App;
 
 //PENDIENTE---------------------
-//fetch: solucion aleatoria
+//useState: array (número de errores) pintar errores en muñeco
 
-//useState: array( letras correctas de la solución), array (número de errores)
-
-//Acción tras solución correcta
+//Acción tras solución correcta --> animacion
+//Bonus: cambio idioma
 
 //convertir en conponentes
