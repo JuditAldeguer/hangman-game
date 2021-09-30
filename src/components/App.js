@@ -9,7 +9,7 @@ import { Route, Switch } from 'react-router-dom';
 import objectFunctions from '../services/api';
 //components
 import Header from './Header';
-import MainWriten from './MainWriten';
+import Play from './Play';
 import MainDrawn from './MainDrawn';
 import Footer from './Footer';
 
@@ -87,7 +87,17 @@ function App() {
     objectFunctions.callToApi().then((responsedata) => setWord(responsedata));
     setErrors([]);
     setSolution([]);
+    setUserLetters([]);
+    setintroducedLetter('');
   }, []);
+
+  const handleChange = (ev) => {
+    setErrors([]);
+    setSolution([]);
+    setUserLetters([]);
+    setintroducedLetter('');
+    setWord(ev.currentTarget.value);
+  };
 
   const renderSolutionLetters = () => {
     const wordLetters = word.split('');
@@ -117,7 +127,7 @@ function App() {
       <main className="main">
         <Switch>
           <Route path="/" exact>
-            <MainWriten
+            <Play
               renderSolutionLetters={renderSolutionLetters}
               renderErrorLetters={renderErrorLetters}
               handleIntroducedLetter={handleIntroducedLetter}
@@ -148,10 +158,29 @@ function App() {
               <ul>
                 <li>
                   <h3>Multijugador </h3>
-                  <form>
-                    <label htmlFor="word">Escribe la palabra: </label>
-                    <input type="text" />
+                  <form onSubmit={(ev) => ev.preventDefault()}>
+                    <label className="title" htmlFor="word">
+                      Escribe aquí la palabra que hay que adivinar:
+                    </label>
+                    <input
+                      autoFocus
+                      autoComplete="off"
+                      className="form__input"
+                      maxLength="15"
+                      type="text"
+                      id="word"
+                      name="word"
+                      value={word}
+                      onChange={handleChange}
+                    />
                   </form>
+                </li>
+                <li>
+                  Cambio de idioma
+                  <ul>
+                    <li>Inglés</li>
+                    <li>Español</li>
+                  </ul>
                 </li>
               </ul>
             </section>
@@ -168,8 +197,6 @@ function App() {
 export default App;
 
 //PENDIENTE---------------------
-//useState: array (número de errores) pintar errores en muñeco
-
 //Acción tras solución correcta --> animacion
 //Bonus: cambio idioma
 
