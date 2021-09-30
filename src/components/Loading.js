@@ -1,12 +1,21 @@
 const Loading = (props) => {
-  const getLoading = () => {
-    if (props.loading) {
-      return <span className="loading" />;
-    } else {
-      return null;
-    }
-  };
-  return getLoading();
+  return props.loading ? (
+    // <span className="loading" />
+    <div className="lds-spinner">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  ) : null;
 };
 
 export default Loading;

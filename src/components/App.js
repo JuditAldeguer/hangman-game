@@ -21,7 +21,7 @@ function App() {
   const [userLetters, setUserLetters] = useState([]);
   const [errors, setErrors] = useState([]);
   const [solution, setSolution] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   //funciones
   const functionGiveFeedback = () => {
@@ -87,12 +87,14 @@ function App() {
 
   useEffect(() => {
     setIsLoading(true);
-    objectFunctions.callToApi().then((responsedata) => setWord(responsedata));
-    setErrors([]);
-    setSolution([]);
-    setUserLetters([]);
-    setintroducedLetter('');
-    setIsLoading(false);
+    objectFunctions.callToApi().then((responsedata) => {
+      setWord(responsedata);
+      setIsLoading(false);
+      setErrors([]);
+      setSolution([]);
+      setUserLetters([]);
+      setintroducedLetter('');
+    });
   }, []);
 
   const handleChange = (ev) => {
@@ -124,14 +126,10 @@ function App() {
     return found.map((l) => <li className="letter">{l}</li>);
   };
 
-  const handleLoad = () => {
-    setIsLoading(true);
-  };
   //return
   return (
-    <div className="page" onLoad={handleLoad}>
+    <div className="page">
       <Loading loading={isLoading} />
-      {/* da error - nunca se ve------------------------------------------------------ */}
       <Header />
       <main className="main">
         <Switch>
@@ -198,6 +196,7 @@ function App() {
 
         <MainDrawn errors={errors} />
       </main>
+
       <Footer />
     </div>
   );
