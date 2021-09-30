@@ -1,7 +1,7 @@
 //styles
 import '../styles/App.scss';
-//images
-import ahorcado from '../images/favicon-ahorcado.jpg';
+// //images
+// import ahorcado from '../images/favicon-ahorcado.jpg';
 //react
 import { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
