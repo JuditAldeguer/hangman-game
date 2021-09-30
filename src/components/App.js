@@ -12,6 +12,7 @@ import Header from './Header';
 import Play from './Play';
 import MainDrawn from './MainDrawn';
 import Footer from './Footer';
+import Loading from './Loading';
 
 function App() {
   //estados
@@ -20,6 +21,7 @@ function App() {
   const [userLetters, setUserLetters] = useState([]);
   const [errors, setErrors] = useState([]);
   const [solution, setSolution] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   //funciones
   const functionGiveFeedback = () => {
@@ -84,11 +86,13 @@ function App() {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     objectFunctions.callToApi().then((responsedata) => setWord(responsedata));
     setErrors([]);
     setSolution([]);
     setUserLetters([]);
     setintroducedLetter('');
+    setIsLoading(false);
   }, []);
 
   const handleChange = (ev) => {
@@ -120,9 +124,14 @@ function App() {
     return found.map((l) => <li className="letter">{l}</li>);
   };
 
+  const handleLoad = () => {
+    setIsLoading(true);
+  };
   //return
   return (
-    <div className="page">
+    <div className="page" onLoad={handleLoad}>
+      <Loading loading={isLoading} />
+      {/* da error - nunca se ve------------------------------------------------------ */}
       <Header />
       <main className="main">
         <Switch>
@@ -200,4 +209,8 @@ export default App;
 //Acción tras solución correcta --> animacion
 //Bonus: cambio idioma
 
-//convertir en conponentes
+//convertir en conponentes e importar el Sass a cada componente
+//añadir defaultProps y PropTypes
+//Hacer destructuring de las props
+
+//revisar 1r letra feedback
