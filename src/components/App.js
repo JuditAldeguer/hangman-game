@@ -1,7 +1,17 @@
+//styles
 import '../styles/App.scss';
+//images
 import ahorcado from '../images/favicon-ahorcado.jpg';
+//react
 import { useEffect, useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
+//services
 import objectFunctions from '../services/api';
+//components
+import Header from './Header';
+import MainWriten from './MainWriten';
+import MainDrawn from './MainDrawn';
+import Footer from './Footer';
 
 function App() {
   //estados
@@ -35,10 +45,6 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    updateSolErr();
-  }, [introducedLetter]);
-
   const updateSolErr = () => {
     const patt = /^[a-zA-ZáéíóúñüÁÉÍÓÚÜ]{1}$/;
     if (patt.test(introducedLetter)) {
@@ -58,8 +64,12 @@ function App() {
     }
   };
 
-  const handleIntroducedLetter = (ev) => {
-    const initialLetter = ev.currentTarget.value;
+  useEffect(() => {
+    updateSolErr();
+  }, [introducedLetter]);
+
+  const handleIntroducedLetter = (value) => {
+    const initialLetter = value;
     const letter = initialLetter.toLowerCase();
     const patt = /^[a-zA-ZáéíóúñüÁÉÍÓÚÜ]{1}$/;
     if (patt.test(letter)) {
@@ -103,54 +113,54 @@ function App() {
   //return
   return (
     <div className="page">
-      <header>
-        <h1 className="header__title">Juego del ahorcado</h1>
-      </header>
+      <Header />
       <main className="main">
-        <section>
-          <div className="solution">
-            <h2 className="title">Solución:</h2>
-            <ul className="letters">{renderSolutionLetters()}</ul>
-          </div>
-          <div className="feedback">
-            <h2 className="title">Letras falladas:</h2>
-            <ul className="letters">{renderErrorLetters()}</ul>
-          </div>
-          <form className="form">
-            <label className="title" htmlFor="last-letter">
-              Escribe una letra:
-            </label>
-            <input
-              onChange={handleIntroducedLetter}
-              autoComplete="off"
-              className="form__input"
-              maxLength="1"
-              type="text"
-              name="last-letter"
-              id="last-letter"
-              value={introducedLetter}
+        <Switch>
+          <Route path="/" exact>
+            <MainWriten
+              renderSolutionLetters={renderSolutionLetters}
+              renderErrorLetters={renderErrorLetters}
+              handleIntroducedLetter={handleIntroducedLetter}
+              introducedLetter={introducedLetter}
+              functionGiveFeedback={functionGiveFeedback}
             />
-            <br />
-            <p>{functionGiveFeedback()}</p>
-          </form>
-        </section>
-        <section className={`dummy error-${errors.length}`}>
-          <span className="error-13 eye"></span>
-          <span className="error-12 eye"></span>
-          <span className="error-11 line"></span>
-          <span className="error-10 line"></span>
-          <span className="error-9 line"></span>
-          <span className="error-8 line"></span>
-          <span className="error-7 line"></span>
-          <span className="error-6 head"></span>
-          <span className="error-5 line"></span>
-          <span className="error-4 line"></span>
-          <span className="error-3 line"></span>
-          <span className="error-2 line"></span>
-          <span className="error-1 line"></span>
-          <span className="error-0 line"></span>
-        </section>
+          </Route>
+          <Route path="/instructions">
+            <section className="instructions">
+              <h2>Instructions</h2>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Labore, deleniti magnam rem aliquam quis officia odio eius
+                voluptate maiores, vel ad fugiat perferendis necessitatibus,
+                modi suscipit nemo at magni delectus.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Praesentium animi voluptatem quis impedit amet in dicta soluta
+                explicabo, fugit magni mollitia, pariatur eos, repellendus aut
+                esse recusandae minima eum eaque.
+              </p>
+            </section>
+          </Route>
+          <Route path="/options">
+            <section className="instructions">
+              <h2>Estas son las opciones del juego</h2>
+              <ul>
+                <li>
+                  <h3>Multijugador </h3>
+                  <form>
+                    <label htmlFor="word">Escribe la palabra: </label>
+                    <input type="text" />
+                  </form>
+                </li>
+              </ul>
+            </section>
+          </Route>
+        </Switch>
+
+        <MainDrawn errors={errors} />
       </main>
+      <Footer />
     </div>
   );
 }
