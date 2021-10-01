@@ -22,27 +22,19 @@ Aqui encontrarás información sobre esta Aplicación Web, los lenguajes y herra
     - Infomación
     - Opciones
     - Jugar
-  - Pintar los clubs iniciales
-  - Posibilidade de **añadir** clubs
-  - Posibilidad de **filtrar** según horario
-  - Posibilidade de **borar** clubs uno a uno
-
-  Añadidos de forma proactiva:
-
-  - Posibilidade de **borar todos** los clubs con el botón Reset
-  - **Guardar en localStorage** los clubs con el uso de **useEffect**
-  - **Importar desde localStorage** en caso que no sea la primera vez que el/la usuario/a se conecta con el uso de **useEffect**
+  - Posibilidade de partida **multijugador** donde un jugador escoge la palabra a adivinar
+  - **Feedback** según letra escrita por el/la usuari@
+  - Se **reestablecen** los datos guardados al geenrar nueva palabra a adivinar
 
 - Qué partes tiene  
   Contiene tres partes claras:
 
   1. El _header_
-     - Sección introductoria que incluye el título de la página.
+     - Incluye el título de la página.
   2. El _main_
-     - Archivador de clubes + flitro + reset
-     - Añadir nuevo club
+     - Continene las 3 vistas, anteriormente indicadas
   3. El _footer_
-     - Copy-right
+     - Copy-right y Links para cambiar de vista
 
 - Qué tecnologías usa
   He usado los lenguages HTML, CSS, JavaScript y React.  
@@ -54,7 +46,7 @@ Aqui encontrarás información sobre esta Aplicación Web, los lenguajes y herra
 - Cómo se ejecuta  
   Una vez se dispone de estas herramientas bien ubicadas, con los comandos <npm install> y <npm start> podrás empezar a hacer uso del React-Starter-Kit y sus facilidades.
 
-Espero que te guste mi trabajo y que puedas darme indicaciones para seguir mejorando.  
+Espero que te guste mi trabajo y, si deseas, puedes darme indicaciones para seguir mejorando.  
 Gracias por adelantado!!!
 
 ---
