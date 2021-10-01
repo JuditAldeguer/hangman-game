@@ -1,6 +1,6 @@
 'use strict';
 
-const autoprefixerr = require('gulp-autoprefixer');
+const autoprefixer = require('gulp-autoprefixer');
 const browserSync = require('browser-sync');
 // const combineMq = require('gulp-combine-mq');
 const concat = require('gulp-concat');

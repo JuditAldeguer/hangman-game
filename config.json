@@ -1,6 +1,6 @@
 {
   "env": {
-    "devv": {
+    "dev": {
       "dest": "public"
     },
     "producction": {
