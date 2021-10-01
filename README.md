@@ -2,23 +2,26 @@
 
 ## Info
 
-¡Muy buenas! 👋
+¡Bienvenid@! 👋
 
-Aqui dejo las anotaciones para la evaluación intermedia y también más a bajo he dejado la presentación que tengo de mi perfil de Github por si deseas/pudieras indicarme qué opinas y cómo lo podría mejorar ;)
+Aqui encontrarás información sobre esta Aplicación Web, los lenguajes y herramientas usadas, y cómo usarlo.
 
 ## Mi proyecto
 
 - Dónde localizarlo  
-   Mi trabajo se encuentra en el repositorio de Github y puedes encontrar facilmente el link a Github Page que da acceso a la última versión de mi **rama master** en el apartado _About_. [Acceder a la web](http://beta.adalab.es/modulo-3-evaluacion-intermedia-JuditAldeguer/)
+   Mi trabajo se encuentra en el repositorio de Github y puedes encontrar facilmente el link a Github Page que da acceso a la última versión de mi **rama master** en el apartado _About_. [Acceder a la web](https://juditaldeguer.github.io/hangman-game/)
 
   Deseo destacar que he seguido un **diseño responsive**, el cual varia al pasar de versión mobil a tablet.
 
   Por otro lado, como podrás ver, este trabajo consta de dos ramas **rama dev** para todo lo que está en desarrollo y **rama master** que contiene el producto final.
 
 - Qué es  
-  Se trata de una aplicación web que sirve de Archivador interactivo de tus Clubs favoritos. He añadido estilo y todas las fucionalidades solicitadas sumandole un botón reset:
+  Se trata de una aplicación web que te permite jugar al conocido [Juego del ahorcado](<https://es.wikipedia.org/wiki/Ahorcado_(juego)>) y tiene como funcionalidades:
 
-  - Obtener información de los clubs iniciales y guardarlos en el estado con **useState**
+  - Consta de 3 vistas gracias a **Route** y **Switch**:
+    - Infomación
+    - Opciones
+    - Jugar
   - Pintar los clubs iniciales
   - Posibilidade de **añadir** clubs
   - Posibilidad de **filtrar** según horario
@@ -33,13 +36,13 @@ Aqui dejo las anotaciones para la evaluación intermedia y también más a bajo 
 - Qué partes tiene  
   Contiene tres partes claras:
 
-  1.  El _header_
-      - Sección introductoria que incluye el título de la página.
-  2.  El _main_
-      - Archivador de clubes + flitro + reset
-      - Añadir nuevo club
-  3.  El _footer_
-      - Copy-right
+  1. El _header_
+     - Sección introductoria que incluye el título de la página.
+  2. El _main_
+     - Archivador de clubes + flitro + reset
+     - Añadir nuevo club
+  3. El _footer_
+     - Copy-right
 
 - Qué tecnologías usa
   He usado los lenguages HTML, CSS, JavaScript y React.  
@@ -56,7 +59,7 @@ Gracias por adelantado!!!
 
 ---
 
-## Technologies:
+## Technologies and Tools
 
 <img align="left" alt="HTML5" width="30px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/html/html.png" />
 
@@ -77,10 +80,6 @@ Gracias por adelantado!!!
 <img align="left" alt="Sass" width="30px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/sass/sass.png" />
 
 <img align="left" alt="nodejs" width="40" height="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" />
-<br>
-<br>
-
-## Tools
 
 <img align="left" alt="Github" width="30px" src="https://image.flaticon.com/icons/png/512/25/25231.png" />
 
