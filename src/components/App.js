@@ -211,3 +211,7 @@ export default App;
 //Hacer destructuring de las props
 
 //revisar 1r letra feedback
+
+//diseño responsive
+
+//copy-right en footer
