@@ -1,5 +1,5 @@
 {
-  "name":  "Hangman-game",
+  "name": "Hangman-game",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,6 +17,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "githubpages": "rm -rf docs && npm run build && mv build docs && git add docs/* && git commit -m \"Publish in GitHub Pages\" && git push",
+    "push-docs": "rm -rf build && rm -rf docs && npm run build && mv build docs && git add docs/* && git commit -m \"Publish in GitHub Pages\" && git push",
+    "deploy": "npm run push-docs",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -37,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "author": "JuditAldeguer",
+	"license": "MIT",
+	"homepage": "./"
 }
