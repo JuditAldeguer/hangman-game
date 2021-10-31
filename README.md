@@ -15,6 +15,8 @@ Aqui encontrarás información sobre esta Aplicación Web, los lenguajes y herra
 
   Por otro lado, como podrás ver, este trabajo consta de dos ramas **rama dev** para todo lo que está en desarrollo y **rama master** que contiene el producto final.
 
+  Así mismo, este es un ejercicio que iniciamos en un repositorio colaborativo (repoA)[https://github.com/JuditAldeguer/promo-n-module-3-pair-2-hangman-game] junto con (Alexandra)[https://github.com/AlexandraLR] y (repoB)[https://github.com/Adalab/promo-N-module-3-pair-14-sprint-2-hangman-game] junto con (Moni)[https://github.com/moniLamas] el cual continué por mi cuenta.
+
 - Qué es  
   Se trata de una aplicación web que te permite jugar al conocido [Juego del ahorcado](<https://es.wikipedia.org/wiki/Ahorcado_(juego)>) y tiene como funcionalidades:
 
